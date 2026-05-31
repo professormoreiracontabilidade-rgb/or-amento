@@ -5,713 +5,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Curso de Contabilidade Professor Moreira - Modelos de Orçamento Público</title>
 <style>
-    * {
-        box-sizing: border-box;
-    }
+*{box-sizing:border-box}
+body{margin:0;background:#e8eef6;font-family:Arial,Helvetica,sans-serif;color:#111827;line-height:1.45}
+.toolbar{position:sticky;top:0;z-index:999;background:#0b1f3a;padding:12px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.25)}
+.toolbar button{background:#f59e0b;color:#111827;border:none;padding:12px 22px;border-radius:10px;font-size:17px;font-weight:bold;cursor:pointer}
+.page{width:210mm;min-height:297mm;margin:18px auto;padding:16mm;background:#fff;border:3px solid #0b1f3a;box-shadow:0 6px 18px rgba(0,0,0,.18);page-break-after:always}
+.header{background:#0b1f3a;color:white;padding:18px;border-radius:14px;text-align:center;margin-bottom:18px}
+.header h1{margin:0;font-size:28px;text-transform:uppercase;letter-spacing:.4px}
+.header .sub{margin-top:8px;font-size:21px;font-weight:bold;color:#fbbf24}
+h2{font-size:25px;color:#0b1f3a;border-left:8px solid #f59e0b;padding-left:12px;margin:22px 0 12px;page-break-after:avoid}
+h3{font-size:21px;color:#0f3b66;margin:14px 0 8px;page-break-after:avoid}
+p,li{font-size:18px}
+ul{margin-top:6px;padding-left:28px}
+.box{border:2px solid #d1d5db;border-left:8px solid #0b1f3a;background:#f8fafc;padding:13px 15px;border-radius:12px;margin:12px 0;page-break-inside:avoid}
+.blue{background:#eff6ff;border-left-color:#2563eb}.green{background:#ecfdf5;border-left-color:#059669}.gold{background:#fff7ed;border-left-color:#f59e0b}.red{background:#fef2f2;border-left-color:#dc2626}.purple{background:#f5f3ff;border-left-color:#7c3aed}
+.summary{font-size:19px;font-weight:bold;color:#0b1f3a}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:17px;page-break-inside:avoid}
+th{background:#0b1f3a;color:white;padding:10px;border:1px solid #0b1f3a;text-align:center}
+td{padding:10px;border:1px solid #6b7280;vertical-align:top}
+tr:nth-child(even) td{background:#f3f4f6}
+.footer{margin-top:22px;padding-top:10px;border-top:2px solid #0b1f3a;text-align:center;font-size:15px;font-weight:bold;color:#0b1f3a}
+@page{size:A4;margin:0}
+@media print{body{background:white}.toolbar{display:none}.page{margin:0;width:210mm;min-height:297mm;box-shadow:none;border:none;page-break-after:always}.box,table,h2,h3{page-break-inside:avoid}}
+@media screen and (max-width:800px){.page{width:100%;min-height:auto;margin:0;border:none;padding:18px}}
 
-    body {
-        margin: 0;
-        padding: 0;
-        background: #e9eef5;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #111827;
-        line-height: 1.45;
-    }
+/* Numeração automática das páginas no rodapé */
+body{counter-reset:pagina}
+.page{counter-increment:pagina}
+.footer::after{content:" • Página " counter(pagina)}
 
-    .toolbar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: #0b1f3a;
-        color: white;
-        padding: 12px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,.2);
-    }
-
-    .toolbar button {
-        background: #f59e0b;
-        color: #111827;
-        border: none;
-        padding: 12px 22px;
-        border-radius: 10px;
-        font-weight: 700;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .page {
-        width: 210mm;
-        min-height: 297mm;
-        margin: 18px auto;
-        padding: 18mm 15mm;
-        background: white;
-        border: 2px solid #0b1f3a;
-        box-shadow: 0 6px 18px rgba(0,0,0,.15);
-        page-break-after: always;
-    }
-
-    .header {
-        background: #0b1f3a;
-        color: white;
-        padding: 18px;
-        border-radius: 12px;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .header h1 {
-        margin: 0;
-        font-size: 28px;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-    }
-
-    .subtitle {
-        margin-top: 8px;
-        font-size: 20px;
-        font-weight: 700;
-        color: #fbbf24;
-    }
-
-    h2 {
-        font-size: 25px;
-        color: #0b1f3a;
-        border-left: 8px solid #f59e0b;
-        padding-left: 12px;
-        margin: 22px 0 12px;
-        page-break-after: avoid;
-    }
-
-    h3 {
-        font-size: 22px;
-        color: #0f3b66;
-        margin: 18px 0 8px;
-        page-break-after: avoid;
-    }
-
-    p, li {
-        font-size: 18px;
-    }
-
-    ul {
-        margin-top: 6px;
-        padding-left: 26px;
-    }
-
-    .box {
-        border: 2px solid #d1d5db;
-        border-left: 8px solid #0b1f3a;
-        padding: 14px 16px;
-        border-radius: 12px;
-        margin: 14px 0;
-        background: #f8fafc;
-        page-break-inside: avoid;
-    }
-
-    .gold {
-        background: #fff7ed;
-        border-left-color: #f59e0b;
-    }
-
-    .green {
-        background: #ecfdf5;
-        border-left-color: #059669;
-    }
-
-    .red {
-        background: #fef2f2;
-        border-left-color: #dc2626;
-    }
-
-    .blue {
-        background: #eff6ff;
-        border-left-color: #2563eb;
-    }
-
-    .summary {
-        font-weight: 700;
-        font-size: 19px;
-        color: #0b1f3a;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 14px;
-        font-size: 17px;
-        page-break-inside: avoid;
-    }
-
-    th {
-        background: #0b1f3a;
-        color: white;
-        padding: 10px;
-        border: 1px solid #0b1f3a;
-    }
-
-    td {
-        padding: 10px;
-        border: 1px solid #9ca3af;
-        vertical-align: top;
-    }
-
-    tr:nth-child(even) {
-        background: #f3f4f6;
-    }
-
-    .footer {
-        margin-top: 24px;
-        padding-top: 10px;
-        border-top: 2px solid #0b1f3a;
-        text-align: center;
-        font-size: 15px;
-        font-weight: 700;
-        color: #0b1f3a;
-    }
-
-    .no-break {
-        page-break-inside: avoid;
-    }
-
-    @media print {
-        body {
-            background: white;
-        }
-
-        .toolbar {
-            display: none;
-        }
-
-        .page {
-            margin: 0;
-            width: 210mm;
-            min-height: 297mm;
-            box-shadow: none;
-            border: none;
-            page-break-after: always;
-        }
-
-        h2, h3, .box, table {
-            page-break-inside: avoid;
-        }
-    }
 </style>
 </head>
 <body>
-
-<div class="toolbar">
-    <button onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button>
-</div>
+<div class="toolbar"><button onclick="window.print()">🖨️ Imprimir / Salvar em PDF</button></div>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Modelos de Orçamento Público</div>
-    </div>
-
-    <h2>1. Orçamento Público</h2>
-
-    <div class="box blue">
-        <h3>Instrumentos de Planejamento</h3>
-        <p><strong>PPA – Plano Plurianual:</strong> define diretrizes, objetivos e metas de médio prazo.</p>
-        <p><strong>LDO – Lei de Diretrizes Orçamentárias:</strong> orienta a elaboração da LOA.</p>
-        <p><strong>LOA – Lei Orçamentária Anual:</strong> é o orçamento propriamente dito.</p>
-    </div>
-
-    <div class="box">
-        <h3>Lei nº 4.320/64</h3>
-        <p>A Lei do Orçamento deve conter a discriminação da receita e da despesa, de forma a evidenciar a política econômico-financeira e o programa de trabalho do governo.</p>
-        <p>Deve obedecer aos princípios da <strong>unidade</strong>, <strong>universalidade</strong> e <strong>anualidade</strong>.</p>
-    </div>
-
-    <div class="box green">
-        <h3>Receitas</h3>
-        <p>A LOA compreende todas as receitas, inclusive operações de crédito autorizadas em lei.</p>
-        <p>Não entram as operações de crédito por antecipação da receita, emissões de papel-moeda e outras entradas compensatórias no ativo e passivo financeiros.</p>
-    </div>
-
-    <div class="box red">
-        <h3>Despesas</h3>
-        <p>A Lei Orçamentária deve conter todas as despesas públicas autorizadas.</p>
-    </div>
-
-    <h2>2. Modelos de Orçamento Público</h2>
-
-    <div class="box gold">
-        <p class="summary">Os quatro modelos principais são:</p>
-        <ul>
-            <li>Orçamento Tradicional ou Clássico</li>
-            <li>Orçamento de Desempenho</li>
-            <li>Orçamento de Base Zero</li>
-            <li>Orçamento-Programa</li>
-        </ul>
-    </div>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Modelos de Orçamento Público</div></div>
+<h2>1. Orçamento Público</h2>
+<div class="box blue"><h3>Conceito Geral</h3><p>O orçamento público é o instrumento utilizado pelo Estado para planejar, autorizar e executar receitas e despesas públicas.</p><p>Ele representa a programação financeira e administrativa da atuação governamental.</p></div>
+<div class="box green"><h3>Instrumentos de Planejamento</h3><p><strong>PPA – Plano Plurianual:</strong> define diretrizes, objetivos e metas de médio prazo.</p><p><strong>LDO – Lei de Diretrizes Orçamentárias:</strong> orienta a elaboração da LOA.</p><p><strong>LOA – Lei Orçamentária Anual:</strong> é o orçamento propriamente dito.</p></div>
+<div class="box gold"><h3>Lei nº 4.320/64</h3><p>A Lei Orçamentária deve conter a discriminação da receita e da despesa, evidenciando a política econômico-financeira e o programa de trabalho do governo.</p><p>Deve obedecer aos princípios da <strong>unidade</strong>, <strong>universalidade</strong> e <strong>anualidade</strong>.</p></div>
+<div class="box"><h3>Receitas e Despesas</h3><p><strong>Receitas:</strong> a LOA compreende todas as receitas públicas, inclusive operações de crédito autorizadas em lei.</p><p><strong>Despesas:</strong> a LOA deve conter todas as despesas públicas autorizadas.</p></div>
+<h2>2. Modelos de Orçamento Público</h2>
+<div class="box purple"><p class="summary">Os principais modelos são:</p><ul><li>Orçamento Tradicional ou Clássico.</li><li>Orçamento de Desempenho.</li><li>Orçamento de Base Zero.</li><li>Orçamento-Programa.</li></ul></div>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Orçamento Tradicional ou Clássico</div>
-    </div>
-
-    <h2>2.1 Orçamento Tradicional ou Clássico</h2>
-
-    <div class="box">
-        <h3>Ideia Central</h3>
-        <p>É um orçamento antigo, com foco contábil e financeiro.</p>
-        <p>A palavra tradicional remete ao passado, pois representa um dos primeiros modelos de orçamento público.</p>
-    </div>
-
-    <div class="box red">
-        <h3>Característica Principal</h3>
-        <p><strong>Não há planejamento da ação governamental.</strong></p>
-        <p>Por isso, é considerado uma peça meramente contábil-financeira.</p>
-    </div>
-
-    <div class="box blue">
-        <h3>Finalidade</h3>
-        <ul>
-            <li>Prever receitas.</li>
-            <li>Autorizar despesas.</li>
-            <li>Registrar entradas e saídas.</li>
-        </ul>
-    </div>
-
-    <div class="box gold">
-        <h3>Base de Elaboração</h3>
-        <p>Utiliza o orçamento anterior como referência.</p>
-        <p>Predomina o <strong>incrementalismo</strong>.</p>
-        <p>Na prática, copia-se o orçamento do ano anterior e aplica-se um fator de correção, geralmente para compensar inflação ou variações esperadas.</p>
-    </div>
-
-    <div class="box">
-        <h3>Foco</h3>
-        <p>O foco está nas necessidades financeiras dos órgãos públicos, e não nas necessidades da população.</p>
-    </div>
-
-    <div class="box red">
-        <h3>Não se preocupa com</h3>
-        <ul>
-            <li>Programas de trabalho.</li>
-            <li>Objetivos.</li>
-            <li>Metas.</li>
-            <li>Resultados.</li>
-            <li>Eficiência do gasto público.</li>
-            <li>Necessidades da população.</li>
-        </ul>
-    </div>
-
-    <div class="box green">
-        <h3>Controle</h3>
-        <p>O controle é voltado à legalidade e à honestidade.</p>
-        <p>O aspecto jurídico prevalece sobre o aspecto econômico.</p>
-    </div>
-
-    <div class="box gold">
-        <p class="summary">Resumo matador: Orçamento Tradicional = passado + contabilidade + legalidade + sem planejamento + sem resultados.</p>
-    </div>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Orçamento Tradicional ou Clássico</div></div>
+<h2>3. Orçamento Tradicional ou Clássico</h2>
+<div class="box blue"><h3>Ideia Central</h3><p>É o modelo mais antigo de orçamento público.</p><p>Tem foco contábil, financeiro e jurídico.</p><p>É considerado uma peça meramente contábil-financeira.</p></div>
+<div class="box red"><h3>Característica Principal</h3><p><strong>Não há planejamento da ação governamental.</strong></p><p>O orçamento tradicional funciona como um registro de entradas e saídas, sem preocupação efetiva com objetivos, metas ou resultados.</p></div>
+<div class="box gold"><h3>Finalidade</h3><ul><li>Prever receitas.</li><li>Autorizar despesas.</li><li>Controlar a legalidade e a honestidade dos gastos.</li></ul></div>
+<div class="box"><h3>Foco</h3><p>O foco está no <strong>objeto do gasto</strong>.</p><p>Exemplos: comprar veículos, computadores, materiais, equipamentos ou pagar salários.</p></div>
+<div class="box purple"><h3>Palavra-Chave</h3><p><strong>Incrementalismo.</strong></p><p>O orçamento tradicional usa o orçamento anterior como base e apenas realiza ajustes.</p></div>
+<div class="box green"><h3>Características</h3><ul><li>Ênfase no objeto do gasto.</li><li>Aspectos contábeis.</li><li>Controle da legalidade e honestidade.</li><li>Alocação de recursos para aquisição de meios.</li><li>Não há planejamento.</li><li>Não há programação.</li><li>Não há medição de resultados.</li><li>Não há preocupação com objetivos e metas.</li></ul></div>
+<div class="box gold"><p class="summary">Resumo matador: Orçamento Tradicional = passado + contabilidade + legalidade + meios + sem planejamento + sem resultado.</p></div>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Orçamento de Desempenho</div>
-    </div>
-
-    <h2>2.2 Orçamento de Desempenho</h2>
-
-    <div class="box">
-        <h3>Ideia Central</h3>
-        <p>O orçamento de desempenho passa a se preocupar com o resultado dos gastos públicos.</p>
-        <p>Ele representa uma evolução em relação ao orçamento tradicional.</p>
-    </div>
-
-    <div class="box blue">
-        <h3>Evolução em Relação ao Tradicional</h3>
-        <p>No orçamento tradicional, a preocupação principal era o equilíbrio financeiro.</p>
-        <p>No orçamento de desempenho, a atenção se volta também para a eficácia dos gastos em sentido amplo.</p>
-    </div>
-
-    <div class="box green">
-        <h3>Foco Principal</h3>
-        <p>O foco principal está no <strong>resultado dos gastos públicos</strong>.</p>
-        <p>O objeto do gasto passa a ser secundário.</p>
-    </div>
-
-    <div class="box">
-        <h3>Programas de Trabalho</h3>
-        <p>O orçamento de desempenho apresenta programas de trabalho contendo ações a serem desenvolvidas.</p>
-        <p><strong>Programa de trabalho</strong> é o conjunto de projetos e atividades sob responsabilidade de um órgão ou unidade orçamentária.</p>
-    </div>
-
-    <div class="box red">
-        <h3>Problema Principal</h3>
-        <p>Ainda não existe planejamento central integrado das ações de governo.</p>
-        <p>Há desvinculação entre planejamento e orçamento.</p>
-    </div>
-
-    <div class="box gold">
-        <p class="summary">Resumo matador: Orçamento de Desempenho = olha para resultados, mas ainda não integra planejamento e orçamento.</p>
-    </div>
-
-    <h2>Comparação Rápida</h2>
-    <table>
-        <tr>
-            <th>Modelo</th>
-            <th>Foco</th>
-            <th>Planejamento</th>
-            <th>Resultado</th>
-        </tr>
-        <tr>
-            <td>Tradicional</td>
-            <td>Receita e despesa</td>
-            <td>Não há</td>
-            <td>Não acompanha</td>
-        </tr>
-        <tr>
-            <td>Desempenho</td>
-            <td>Resultado dos gastos</td>
-            <td>Não integrado</td>
-            <td>Acompanha de forma ampla</td>
-        </tr>
-    </table>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Orçamento de Desempenho</div></div>
+<h2>4. Orçamento de Desempenho</h2>
+<div class="box blue"><h3>Ideia Central</h3><p>É uma evolução em relação ao orçamento tradicional.</p><p>Passa a se preocupar com o resultado dos gastos públicos.</p></div>
+<div class="box green"><h3>Foco</h3><p>O foco deixa de ser apenas o objeto do gasto e passa a considerar o desempenho.</p><p>O resultado do gasto passa a ser mais importante do que simplesmente saber em que o dinheiro foi aplicado.</p></div>
+<div class="box"><h3>Características</h3><ul><li>Apresenta programas de trabalho.</li><li>Demonstra ações a serem desenvolvidas.</li><li>Preocupa-se com o resultado dos gastos.</li><li>O objeto do gasto é secundário.</li><li>O resultado passa a ser mais importante.</li></ul></div>
+<div class="box red"><h3>Problema Principal</h3><p>Ainda não há integração entre planejamento e orçamento.</p><p>Existe preocupação com desempenho, mas não existe planejamento central integrado.</p></div>
+<div class="box gold"><p class="summary">Resumo matador: Orçamento de Desempenho = olha para resultado, mas ainda não integra planejamento e orçamento.</p></div>
+<h2>Comparação Rápida</h2>
+<table><tr><th>Modelo</th><th>Foco</th><th>Planejamento</th><th>Resultado</th></tr><tr><td><strong>Tradicional</strong></td><td>Objeto do gasto</td><td>Não há</td><td>Não mede</td></tr><tr><td><strong>Desempenho</strong></td><td>Resultado do gasto</td><td>Não integrado</td><td>Mede desempenho</td></tr></table>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Orçamento de Base Zero</div>
-    </div>
-
-    <h2>2.3 Orçamento de Base Zero – OBZ</h2>
-
-    <div class="box">
-        <h3>Também chamado de</h3>
-        <p><strong>Orçamento por estratégia.</strong></p>
-    </div>
-
-    <div class="box gold">
-        <h3>Ideia Central</h3>
-        <p>Cada despesa deve ser justificada do zero.</p>
-        <p>Não há compromisso com valores do orçamento anterior.</p>
-    </div>
-
-    <div class="box blue">
-        <h3>Pergunta Central</h3>
-        <p><strong>Essa despesa realmente é necessária?</strong></p>
-    </div>
-
-    <div class="box">
-        <h3>Como Funciona</h3>
-        <p>Todos os recursos solicitados passam por análise crítica.</p>
-        <p>Cada área deve justificar seu orçamento.</p>
-        <p>As atividades são classificadas por ordem de importância.</p>
-        <p>As atividades mais essenciais são priorizadas.</p>
-    </div>
-
-    <div class="box green">
-        <h3>Participação</h3>
-        <p>Há maior participação dos gerentes de todos os níveis no planejamento das atividades e na elaboração dos orçamentos.</p>
-        <p>A alta gerência fixa previamente os critérios do orçamento de base zero.</p>
-    </div>
-
-    <div class="box">
-        <h3>Despesas</h3>
-        <p>As despesas devem ser detalhadas e justificadas todos os anos, como se cada item fosse uma nova iniciativa.</p>
-    </div>
-
-    <div class="box blue">
-        <h3>Relação com Orçamento-Programa</h3>
-        <p>O orçamento de base zero pode ser considerado uma técnica do orçamento-programa.</p>
-    </div>
-
-    <div class="box red">
-        <h3>Desvantagens</h3>
-        <ul>
-            <li>Lentidão.</li>
-            <li>Dificuldade de elaboração.</li>
-            <li>Alto custo.</li>
-            <li>Excesso de burocracia.</li>
-            <li>Pode gerar orçamento menor que o do ano anterior.</li>
-        </ul>
-    </div>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Orçamento de Base Zero</div></div>
+<h2>5. Orçamento de Base Zero – OBZ</h2>
+<div class="box blue"><h3>Também chamado de</h3><p><strong>Orçamento por estratégia.</strong></p></div>
+<div class="box gold"><h3>Ideia Central</h3><p>Cada despesa deve ser justificada do zero.</p><p>Nada é automático.</p><p>Não há compromisso obrigatório com valores do orçamento anterior.</p></div>
+<div class="box red"><h3>Pergunta Principal</h3><p><strong>Essa despesa realmente é necessária?</strong></p></div>
+<div class="box green"><h3>Características</h3><ul><li>Não considera o orçamento anterior como base obrigatória.</li><li>Exige justificativa para cada despesa.</li><li>Analisa criticamente todos os gastos.</li><li>Classifica as atividades por ordem de importância.</li><li>Prioriza as atividades essenciais.</li><li>Exige participação dos gerentes.</li><li>Pode ser considerado uma técnica do orçamento-programa.</li></ul></div>
+<div class="box purple"><h3>Pacotes de Decisão</h3><p>No orçamento base zero, as necessidades de recursos são avaliadas por pacotes de decisão.</p><p>Esses pacotes descrevem:</p><ul><li>Finalidades.</li><li>Custos e benefícios.</li><li>Alternativas para alcançar os objetivos.</li><li>Medidas de desempenho.</li></ul></div>
+<div class="box blue"><h3>Vantagens</h3><ul><li>Reduz gastos desnecessários.</li><li>Obriga a administração a justificar despesas.</li><li>Evita repetir gastos apenas porque existiam no ano anterior.</li><li>Favorece análise crítica.</li></ul></div>
+<div class="box red"><h3>Desvantagens</h3><ul><li>É lento.</li><li>É burocrático.</li><li>Tem alto custo de elaboração.</li><li>Exige muito trabalho administrativo.</li><li>Pode gerar orçamento menor que o anterior.</li></ul></div>
+<div class="box gold"><p class="summary">Resumo matador: Orçamento Base Zero = tudo começa do zero + cada despesa deve ser justificada.</p></div>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Pacotes de Decisão e Orçamento-Programa</div>
-    </div>
-
-    <h2>Pacotes de Decisão no OBZ</h2>
-
-    <div class="box gold">
-        <p>As necessidades de recursos são avaliadas por meio de <strong>pacotes de decisão</strong>.</p>
-    </div>
-
-    <div class="box">
-        <h3>Os pacotes de decisão descrevem</h3>
-        <ul>
-            <li>Finalidades.</li>
-            <li>Custos e benefícios.</li>
-            <li>Maneiras alternativas de alcançar as finalidades.</li>
-            <li>Medidas de desempenho.</li>
-        </ul>
-    </div>
-
-    <div class="box red">
-        <h3>Conclusão sobre o OBZ</h3>
-        <p>A técnica de base zero é considerada eficiente apenas em determinados programas ou em níveis superiores de gerência.</p>
-        <p>Quando aplicada ao todo, pode gerar lentidão e burocracia excessiva.</p>
-    </div>
-
-    <div class="box gold">
-        <p class="summary">Resumo matador: Orçamento Base Zero = nada é automático; tudo deve ser justificado do zero.</p>
-    </div>
-
-    <h2>2.4 Orçamento-Programa</h2>
-
-    <div class="box green">
-        <h3>Ideia Central</h3>
-        <p>É o modelo utilizado atualmente pelo governo.</p>
-        <p>Surgiu nas empresas privadas e foi incorporado à administração pública.</p>
-    </div>
-
-    <div class="box blue">
-        <h3>Critério Predominante</h3>
-        <p>No orçamento-programa, o critério é <strong>funcional-programático</strong>.</p>
-        <p>As ações do governo são organizadas em programas.</p>
-    </div>
-
-    <div class="box">
-        <h3>Objetivo</h3>
-        <p>Proporcionar maior racionalidade e eficiência ao gasto público.</p>
-    </div>
-
-    <div class="box gold">
-        <h3>Característica Principal</h3>
-        <p><strong>Integra planejamento e orçamento.</strong></p>
-        <p>A partir do planejamento, elabora-se o orçamento; e o orçamento executa o planejamento.</p>
-    </div>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Orçamento-Programa</div></div>
+<h2>6. Orçamento-Programa</h2>
+<div class="box green"><h3>Ideia Central</h3><p>É o modelo moderno e utilizado atualmente.</p><p>Integra planejamento e orçamento.</p></div>
+<div class="box blue"><h3>Foco</h3><p>O foco está nos programas, objetivos, metas e resultados.</p></div>
+<div class="box gold"><h3>Critério</h3><p><strong>Critério funcional-programático.</strong></p><p>As ações do governo são organizadas em programas.</p></div>
+<div class="box"><h3>Objetivo</h3><p>Dar maior racionalidade, eficiência e efetividade ao gasto público.</p></div>
+<div class="box green"><h3>Características</h3><ul><li>Integra planejamento e orçamento.</li><li>Discrimina a despesa por objetivo.</li><li>Identifica programas, projetos e atividades.</li><li>Estabelece objetivos e metas.</li><li>Prevê custos.</li><li>Usa indicadores de desempenho.</li><li>Avalia resultados.</li><li>Considera eficiência, eficácia e efetividade.</li></ul></div>
+<div class="box purple"><h3>Aspectos do Orçamento-Programa</h3><ul><li><strong>Técnico.</strong></li><li><strong>Jurídico.</strong></li><li><strong>Político.</strong></li><li><strong>Econômico.</strong></li><li><strong>Financeiro.</strong></li></ul></div>
+<div class="box blue"><h3>Controle</h3><p>Busca avaliar:</p><ul><li>Eficiência.</li><li>Eficácia.</li><li>Efetividade.</li></ul></div>
+<div class="box gold"><p class="summary">Resumo matador: Orçamento-Programa = planejamento + programas + objetivos + metas + indicadores + resultados.</p></div>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Orçamento-Programa</div>
-    </div>
-
-    <h2>Características do Orçamento-Programa</h2>
-
-    <div class="box blue">
-        <h3>Base Legal Destacada</h3>
-        <p>O Decreto-Lei nº 200/1967 estabelece a LOA como orçamento-programa.</p>
-        <p>Não é a Lei nº 4.320/64 que estabelece diretamente a LOA como orçamento-programa.</p>
-    </div>
-
-    <div class="box">
-        <h3>Aspecto Legal</h3>
-        <p>O aspecto legal existe, mas não é o mais importante.</p>
-        <p>Diferentemente do orçamento tradicional, o orçamento-programa dá maior ênfase ao planejamento, aos objetivos, às metas e aos resultados.</p>
-    </div>
-
-    <div class="box green">
-        <h3>Aspectos do Orçamento-Programa</h3>
-        <ul>
-            <li><strong>Técnico</strong></li>
-            <li><strong>Jurídico</strong> – orçamento é uma lei especial</li>
-            <li><strong>Político</strong></li>
-            <li><strong>Econômico</strong> – busca o equilíbrio das contas</li>
-            <li><strong>Financeiro</strong> – fluxo de receitas e despesas</li>
-        </ul>
-    </div>
-
-    <div class="box gold">
-        <h3>Controle</h3>
-        <p>O controle busca:</p>
-        <ul>
-            <li>Eficiência.</li>
-            <li>Eficácia.</li>
-            <li>Efetividade.</li>
-        </ul>
-    </div>
-
-    <div class="box">
-        <h3>Principais Características</h3>
-        <ul>
-            <li>Discrimina a despesa por objetivo.</li>
-            <li>Identifica atividades, projetos e programas de trabalho.</li>
-            <li>Estabelece objetivos e metas.</li>
-            <li>Prevê custos.</li>
-            <li>Considera todos os custos, inclusive os que extrapolam o exercício.</li>
-            <li>Utiliza indicadores para aferir resultados.</li>
-            <li>Dá ênfase ao planejamento.</li>
-        </ul>
-    </div>
-
-    <div class="box blue">
-        <h3>Classificações</h3>
-        <ul>
-            <li>Funcional.</li>
-            <li>Programática.</li>
-        </ul>
-    </div>
-
-    <div class="box gold">
-        <p class="summary">Resumo matador: Orçamento-Programa = planejamento + programas + objetivos + metas + indicadores + resultados.</p>
-    </div>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Orçamento Tradicional x Orçamento Moderno</div></div>
+<h2>7. Quadro Comparativo Principal</h2>
+<table><tr><th>Orçamento Tradicional</th><th>Orçamento Moderno</th></tr><tr><td>Ênfase no objeto do gasto</td><td>Critério funcional-programático</td></tr><tr><td>Controle da legalidade e honestidade dos gastos públicos</td><td>Ênfase na eficiência, eficácia e efetividade das ações governamentais</td></tr><tr><td>Alocação de recursos visa à aquisição de meios</td><td>Alocação de recursos visa à consecução de objetivos e metas</td></tr><tr><td>Não há planejamento e programação</td><td>Integração entre planejamento e orçamento</td></tr><tr><td>Aspectos contábeis</td><td>Aspectos administrativos e de planejamento</td></tr><tr><td>Não há medição de resultados</td><td>Indicadores e padrões de desempenho</td></tr></table>
+<h2>8. Diferenças Mais Cobradas em Prova</h2>
+<div class="box red"><h3>Orçamento Tradicional</h3><ul><li>Foco nos meios.</li><li>Objeto do gasto.</li><li>Legalidade.</li><li>Aspectos contábeis.</li><li>Sem planejamento.</li><li>Sem medição de resultados.</li><li>Incrementalismo.</li></ul></div>
+<div class="box green"><h3>Orçamento Moderno / Orçamento-Programa</h3><ul><li>Foco nos fins.</li><li>Objetivos e metas.</li><li>Planejamento integrado.</li><li>Indicadores de desempenho.</li><li>Eficiência, eficácia e efetividade.</li><li>Programas governamentais.</li></ul></div>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Quadro Comparativo</div>
-    </div>
-
-    <h2>3. Quadro Comparativo dos Modelos</h2>
-
-    <table>
-        <tr>
-            <th>Modelo</th>
-            <th>Foco</th>
-            <th>Planejamento</th>
-            <th>Resultado</th>
-            <th>Palavra-chave</th>
-        </tr>
-        <tr>
-            <td><strong>Tradicional</strong></td>
-            <td>Receita e despesa</td>
-            <td>Não há</td>
-            <td>Não acompanha</td>
-            <td>Incrementalismo</td>
-        </tr>
-        <tr>
-            <td><strong>Desempenho</strong></td>
-            <td>Resultado dos gastos</td>
-            <td>Não integrado</td>
-            <td>Sim, de forma ampla</td>
-            <td>Desempenho</td>
-        </tr>
-        <tr>
-            <td><strong>Base Zero</strong></td>
-            <td>Justificativa de cada gasto</td>
-            <td>Análise crítica</td>
-            <td>Priorização</td>
-            <td>Justificar do zero</td>
-        </tr>
-        <tr>
-            <td><strong>Programa</strong></td>
-            <td>Programas, metas e objetivos</td>
-            <td>Integrado</td>
-            <td>Eficiência, eficácia e efetividade</td>
-            <td>Planejamento</td>
-        </tr>
-    </table>
-
-    <h2>4. Regras de Ouro para Prova</h2>
-
-    <div class="box gold">
-        <h3>Orçamento Tradicional</h3>
-        <p>Quando a questão falar em <strong>peça contábil</strong>, <strong>sem planejamento</strong>, <strong>ano anterior</strong>, <strong>legalidade</strong> e <strong>incrementalismo</strong>, marque orçamento tradicional.</p>
-    </div>
-
-    <div class="box blue">
-        <h3>Orçamento de Desempenho</h3>
-        <p>Quando falar em <strong>resultado dos gastos</strong>, mas <strong>sem integração com planejamento</strong>, marque orçamento de desempenho.</p>
-    </div>
-
-    <div class="box red">
-        <h3>Orçamento Base Zero</h3>
-        <p>Quando falar em <strong>justificar tudo do zero</strong>, <strong>pacotes de decisão</strong> e <strong>sem considerar o orçamento anterior</strong>, marque orçamento base zero.</p>
-    </div>
-
-    <div class="box green">
-        <h3>Orçamento-Programa</h3>
-        <p>Quando falar em <strong>programas</strong>, <strong>objetivos</strong>, <strong>metas</strong>, <strong>indicadores</strong>, <strong>planejamento integrado</strong> e <strong>eficiência, eficácia e efetividade</strong>, marque orçamento-programa.</p>
-    </div>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Palavras-Chave para Prova</div></div>
+<h2>9. Palavras-Chave para Prova</h2>
+<div class="box gold"><h3>Orçamento Tradicional</h3><ul><li>Objeto do gasto.</li><li>Meios.</li><li>Legalidade.</li><li>Honestidade.</li><li>Contábil.</li><li>Financeiro.</li><li>Sem planejamento.</li><li>Incrementalismo.</li><li>Ano anterior.</li></ul></div>
+<div class="box blue"><h3>Orçamento de Desempenho</h3><ul><li>Resultado dos gastos.</li><li>Desempenho.</li><li>Programas de trabalho.</li><li>Sem integração plena com planejamento.</li></ul></div>
+<div class="box red"><h3>Orçamento Base Zero</h3><ul><li>Justificar do zero.</li><li>Pacotes de decisão.</li><li>Análise crítica.</li><li>Sem base no ano anterior.</li><li>Priorização.</li><li>Cada despesa precisa ser justificada.</li></ul></div>
+<div class="box green"><h3>Orçamento-Programa</h3><ul><li>Programas.</li><li>Objetivos.</li><li>Metas.</li><li>Indicadores.</li><li>Planejamento integrado.</li><li>Eficiência.</li><li>Eficácia.</li><li>Efetividade.</li><li>Critério funcional-programático.</li></ul></div>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 <section class="page">
-    <div class="header">
-        <h1>Curso de Contabilidade Professor Moreira</h1>
-        <div class="subtitle">Resumo Final</div>
-    </div>
-
-    <h2>5. Revisão Final</h2>
-
-    <div class="box">
-        <h3>Orçamento Público</h3>
-        <ul>
-            <li>Instrumento de planejamento e execução financeira do Estado.</li>
-            <li>A LOA é o orçamento propriamente dito.</li>
-            <li>A LOA deve observar o PPA e a LDO.</li>
-        </ul>
-    </div>
-
-    <div class="box gold">
-        <h3>1. Tradicional</h3>
-        <ul>
-            <li>Sem planejamento.</li>
-            <li>Foco contábil-financeiro.</li>
-            <li>Receita e despesa.</li>
-            <li>Incrementalismo.</li>
-            <li>Legalidade.</li>
-            <li>Não mede resultados.</li>
-        </ul>
-    </div>
-
-    <div class="box blue">
-        <h3>2. Desempenho</h3>
-        <ul>
-            <li>Foco no resultado do gasto.</li>
-            <li>Possui programas de trabalho.</li>
-            <li>Ainda não integra planejamento e orçamento.</li>
-        </ul>
-    </div>
-
-    <div class="box red">
-        <h3>3. Base Zero</h3>
-        <ul>
-            <li>Tudo começa do zero.</li>
-            <li>Cada despesa deve ser justificada.</li>
-            <li>Usa pacotes de decisão.</li>
-            <li>Prioriza atividades essenciais.</li>
-            <li>Desvantagem: lento, caro e burocrático.</li>
-        </ul>
-    </div>
-
-    <div class="box green">
-        <h3>4. Orçamento-Programa</h3>
-        <ul>
-            <li>Modelo atual.</li>
-            <li>Integra planejamento e orçamento.</li>
-            <li>Organiza ações em programas.</li>
-            <li>Define objetivos e metas.</li>
-            <li>Usa indicadores.</li>
-            <li>Busca eficiência, eficácia e efetividade.</li>
-        </ul>
-    </div>
-
-    <div class="box gold">
-        <p class="summary">Para prova: o modelo mais completo é o orçamento-programa, pois liga planejamento, programas, objetivos, metas, custos, indicadores e resultados.</p>
-    </div>
-
-    <div class="footer">Curso de Contabilidade Professor Moreira</div>
+<div class="header"><h1>Curso de Contabilidade Professor Moreira</h1><div class="sub">Quadro Final e Regras de Ouro</div></div>
+<h2>10. Quadro Final Resumido</h2>
+<table><tr><th>Modelo</th><th>Foco</th><th>Planejamento</th><th>Resultado</th><th>Palavra-chave</th></tr><tr><td><strong>Tradicional</strong></td><td>Objeto do gasto</td><td>Não há</td><td>Não mede</td><td>Incrementalismo</td></tr><tr><td><strong>Desempenho</strong></td><td>Resultado do gasto</td><td>Não integrado</td><td>Mede desempenho</td><td>Resultado</td></tr><tr><td><strong>Base Zero</strong></td><td>Justificativa da despesa</td><td>Análise crítica</td><td>Prioriza gastos</td><td>Justificar do zero</td></tr><tr><td><strong>Programa</strong></td><td>Objetivos e metas</td><td>Integrado</td><td>Mede resultados</td><td>Planejamento</td></tr></table>
+<h2>11. Regras de Ouro</h2>
+<div class="box gold"><h3>Regra 1 — Orçamento Tradicional</h3><p>Quando a questão falar em <strong>objeto do gasto</strong>, <strong>aquisição de meios</strong>, <strong>legalidade</strong>, <strong>aspecto contábil</strong> e <strong>sem medição de resultado</strong>, marque <strong>Orçamento Tradicional</strong>.</p></div>
+<div class="box blue"><h3>Regra 2 — Orçamento de Desempenho</h3><p>Quando falar em <strong>resultado dos gastos</strong>, mas ainda sem integração plena com planejamento, marque <strong>Orçamento de Desempenho</strong>.</p></div>
+<div class="box red"><h3>Regra 3 — Orçamento Base Zero</h3><p>Quando falar em <strong>justificar tudo do zero</strong>, <strong>pacotes de decisão</strong> e <strong>não usar o ano anterior como base</strong>, marque <strong>Orçamento Base Zero</strong>.</p></div>
+<div class="box green"><h3>Regra 4 — Orçamento-Programa</h3><p>Quando falar em <strong>programas</strong>, <strong>objetivos</strong>, <strong>metas</strong>, <strong>indicadores</strong>, <strong>planejamento integrado</strong>, <strong>eficiência</strong>, <strong>eficácia</strong> e <strong>efetividade</strong>, marque <strong>Orçamento-Programa</strong>.</p></div>
+<div class="box purple"><p class="summary">Para prova: o modelo mais completo é o orçamento-programa, pois liga planejamento, programas, objetivos, metas, custos, indicadores e resultados.</p></div>
+<div class="footer">Curso de Contabilidade Professor Moreira</div>
 </section>
 
 </body>
